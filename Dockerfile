@@ -4,6 +4,8 @@ FROM debian:jessie
 # File Author / Maintainer
 MAINTAINER William Jones <billy@freshjones.com>
 
+run DEBIAN_FRONTEND=noninteractive
+
 # Update the repository sources list
 RUN apt-get update && \
     apt-get install -y \
@@ -14,8 +16,19 @@ RUN apt-get update && \
     nginx \
     supervisor
 
+#install mysql
+RUN apt-get install -y \
+    mysql-server    
+
+# Remove pre-installed database
+RUN rm -rf /var/lib/mysql/*
+
+# MySQL configuration
+#ADD mysql/my.cnf /etc/mysql/conf.d/my.cnf
+RUN sed -i -e"s/^bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
+
 #install php fpm
-RUN apt-get -y install -y \
+RUN apt-get install -y \
     php5-fpm \
     php5-mysql \ 
     php5-gd \
