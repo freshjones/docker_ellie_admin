@@ -4,7 +4,10 @@ FROM debian:jessie
 # File Author / Maintainer
 MAINTAINER William Jones <billy@freshjones.com>
 
-run DEBIAN_FRONTEND=noninteractive
+ENV DEBIAN_FRONTEND noninteractive
+ENV MYSQL_USER admin
+ENV MYSQL_PASS welcome
+
 
 # Update the repository sources list
 RUN apt-get update && \
