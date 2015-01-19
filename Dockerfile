@@ -57,6 +57,9 @@ RUN cd /app && \
     composer config -g github-oauth.github.com  b5a3ac9fb28d24911e1a4b0837bde70b9cbc696f && \
     composer install --prefer-dist
 
+#copy the .env variables
+RUN cp /app/.env.example /app/.env
+
 #change permissions on the app storage folder
 RUN chown -R www-data:www-data /app/storage
 
