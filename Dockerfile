@@ -54,7 +54,7 @@ RUN git clone -b 0.1 --single-branch https://github.com/freshjones/ellie_admin_w
 
 #install composer components
 RUN cd /app && \
-    composer install
+    composer install --prefer-source
 
 #change permissions on the app storage folder
 RUN chown -R www-data:www-data /app/storage
