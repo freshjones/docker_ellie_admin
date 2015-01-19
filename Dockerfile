@@ -79,6 +79,9 @@ RUN cp /app/.env.example /app/.env
 #change permissions on the app storage folder
 RUN chown -R www-data:www-data /app/storage
 
+#change permissions on the mysqld folder
+RUN chown mysql:mysql /var/lib/mysql/
+
 # clean apt cache
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/*
