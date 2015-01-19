@@ -33,6 +33,10 @@ RUN sed -i -e "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g" /etc/php5/fpm/php.ini
 
 #RUN find /etc/php5/cli/conf.d/ -name "*.ini" -exec sed -i -re 's/^(\s*)#(.*)/\1;\2/g' {} \;
 
+#install composer
+RUN curl -sS https://getcomposer.org/installer | php && \
+mv composer.phar /usr/local/bin/composer
+
 #copy supervisor conf
 COPY supervisor/supervisor.conf /etc/supervisor/conf.d/supervisord.conf
 
@@ -47,6 +51,10 @@ ADD sites-enabled/ /etc/nginx/sites-enabled/
 
 #add elliesite app
 RUN git clone -b 0.1 --single-branch https://github.com/freshjones/ellie_admin_webapp.git /app
+
+#install composer components
+RUN cd /app && \
+    composer install
 
 #change permissions on the app storage folder
 RUN chown -R www-data:www-data /app/storage
