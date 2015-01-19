@@ -21,7 +21,7 @@ RUN apt-get update && \
 
 #install mysql
 RUN apt-get install -y \
-    mysql-server-5.6
+    mysql-server
 
 # Remove pre-installed database
 RUN rm -rf /var/lib/mysql/*
