@@ -28,7 +28,7 @@ RUN rm -rf /var/lib/mysql/*
 
 # MySQL configuration
 #ADD mysql/my.cnf /etc/mysql/conf.d/my.cnf
-RUN sed -i -e"s/^bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
+#RUN sed -i -e"s/^bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
 
 #install php fpm
 RUN apt-get install -y \
