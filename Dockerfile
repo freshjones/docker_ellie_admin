@@ -54,6 +54,7 @@ RUN git clone -b 0.1 --single-branch https://github.com/freshjones/ellie_admin_w
 
 #install composer components
 RUN cd /app && \
+    composer config -g github-oauth.github.com  b5a3ac9fb28d24911e1a4b0837bde70b9cbc696f
     composer install --prefer-dist
 
 #change permissions on the app storage folder
