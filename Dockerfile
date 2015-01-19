@@ -24,7 +24,7 @@ RUN apt-get install -y \
     mysql-server
 
 # Remove pre-installed database
-RUN rm -rf /var/lib/mysql/*
+#RUN rm -rf /var/lib/mysql/*
 
 # MySQL configuration
 #ADD mysql/my.cnf /etc/mysql/conf.d/my.cnf
@@ -85,6 +85,9 @@ RUN chown mysql:mysql /var/lib/mysql/
 # clean apt cache
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+
+#create a volume for mysql
+#VOLUME ["/var/lib/mysql"]
 
 #expose port 80
 EXPOSE 80
