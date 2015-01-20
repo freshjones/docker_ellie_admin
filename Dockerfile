@@ -67,7 +67,7 @@ RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 ADD sites-enabled/ /etc/nginx/sites-enabled/
 
 #add elliesite app
-RUN git clone -b 0.1 --single-branch https://github.com/freshjones/ellie_admin_webapp.git /app
+RUN git clone -b 0.1.1 --single-branch https://github.com/freshjones/ellie_admin_webapp.git /app
 
 #install composer components
 RUN cd /app && \
@@ -85,12 +85,11 @@ RUN chown mysql:mysql /var/lib/mysql/
 
 #install database
 ADD mysql/install_db.sh /install_db.sh
-RUN chmod +x /install_db.sh
-RUN /bin/bash /install_db.sh
+ADD mysql/migrate_db.sh /migrate_db.sh
 
-#RUN mysqladmin -u root password welcome
-#RUN mysql -uroot -pwelcome -e "CREATE DATABASE ellie";
-#RUN mysql -uroot -pwelcome -e "GRANT ALL ON ellie.* TO admin@localhost IDENTIFIED BY 'welcome';
+RUN chmod +x /*.sh
+RUN /bin/bash /install_db.sh
+RUN /bin/bash /migrate_db.sh
 
 # clean apt cache
 RUN apt-get clean && \
