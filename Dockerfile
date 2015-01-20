@@ -85,11 +85,9 @@ RUN chown mysql:mysql /var/lib/mysql/
 
 #install database
 ADD mysql/install_db.sh /install_db.sh
-ADD mysql/migrate_db.sh /migrate_db.sh
 
-RUN chmod +x /*.sh
+RUN chmod +x /install_db.sh
 RUN /bin/bash /install_db.sh
-RUN /bin/bash /migrate_db.sh
 
 # clean apt cache
 RUN apt-get clean && \
