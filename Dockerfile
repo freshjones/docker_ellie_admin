@@ -84,9 +84,13 @@ RUN chown -R www-data:www-data /app/storage
 RUN chown mysql:mysql /var/lib/mysql/
 
 #install database
-RUN mysqladmin -u root password welcome
-RUN mysql -uroot -pwelcome -e "CREATE DATABASE ellie";
-RUN mysql -uroot -pwelcome -e "GRANT ALL ON ellie.* TO admin@localhost IDENTIFIED BY 'welcome';
+ADD mysql/install_db.sh /install_db.sh
+RUN chmod +x /install_db.sh
+RUN /bin/bash /install_db.sh
+
+#RUN mysqladmin -u root password welcome
+#RUN mysql -uroot -pwelcome -e "CREATE DATABASE ellie";
+#RUN mysql -uroot -pwelcome -e "GRANT ALL ON ellie.* TO admin@localhost IDENTIFIED BY 'welcome';
 
 # clean apt cache
 RUN apt-get clean && \
