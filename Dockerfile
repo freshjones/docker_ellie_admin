@@ -17,7 +17,8 @@ RUN apt-get update && \
     nano \
     git \
     nginx \
-    supervisor
+    supervisor \
+    docker.io
 
 #install mysql
 RUN apt-get install -y \
