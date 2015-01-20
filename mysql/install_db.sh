@@ -7,4 +7,4 @@ mysqladmin -u root password welcome
 mysql -uroot -pwelcome -e "CREATE DATABASE ellie_admin;"
 mysql -uroot -pwelcome -e "GRANT ALL PRIVILEGES ON ellie_admin.* TO 'admin'@'%' IDENTIFIED BY 'welcome'; FLUSH PRIVILEGES;"
 
-mysqladmin -uroot shutdown
+mysqladmin -uroot -pwelcome shutdown
