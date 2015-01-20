@@ -83,6 +83,11 @@ RUN chown -R www-data:www-data /app/storage
 #change permissions on the mysqld folder
 RUN chown mysql:mysql /var/lib/mysql/
 
+#install database
+RUN mysqladmin -u root password welcome && \
+    mysql -uroot -pwelcome -e "CREATE DATABASE ellie"; && \
+    mysql -uroot -pwelcome -e "GRANT ALL ON ellie.* TO admin@localhost IDENTIFIED BY 'welcome';
+
 # clean apt cache
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -95,4 +100,3 @@ EXPOSE 80
 
 #start supervisor
 CMD ["/usr/bin/supervisord"]
-
