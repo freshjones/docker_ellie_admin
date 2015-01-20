@@ -13,4 +13,7 @@ cd /app
 echo "run migration script"
 php artisan migrate
 
+echo "seed the db"
+php artisan db:seed
+
 mysqladmin -uroot -pwelcome shutdown
