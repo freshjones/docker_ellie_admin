@@ -46,7 +46,7 @@ RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 ADD sites-enabled/ /etc/nginx/sites-enabled/
 
 #add elliesite app
-RUN git clone -b 0.1 --single-branch https://github.com/freshjones/ellie_admin_webapp.git /app
+RUN git clone https://github.com/freshjones/ellie_admin_webapp.git /app
 
 #change permissions on the app storage folder
 RUN chown -R www-data:www-data /app/storage
